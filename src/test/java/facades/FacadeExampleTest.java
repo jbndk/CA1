@@ -1,3 +1,4 @@
+/*
 package facades;
 
 import utils.EMF_Creator;
@@ -61,3 +62,4 @@ public class FacadeExampleTest {
     }
 
 }
+*/
