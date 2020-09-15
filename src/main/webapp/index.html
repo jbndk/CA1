@@ -3,13 +3,70 @@
     <head>
         <title>Group 6 - CA1</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <b>Links:</b>
-        <ul>
-            <li><a href="contract.html">Who did what and our group contract</a></li>
-            <li><a href="https://github.com/jbndk/CA1.git">Our GitHub Repo</a></li>
-        </ul>
-        
+
+        <div class="container">
+            <div class="col-sm-6">
+                
+                <br>
+                
+                <h1>Gruppe 6 - E klassen</h1>
+
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Student ID</th>
+                        </tr>
+                    </thead>
+                    <tbody id="members">
+                    </tbody>
+                </table>
+
+
+
+                <button class="btn btn-primary" id="getAll">Get all members</button><br><br>
+
+                <b>Links:</b>
+                <ul>
+                    <li><a href="contract.html">Who did what and our group contract</a></li>
+                    <li><a href="https://github.com/jbndk/CA1.git">Our GitHub Repo</a></li>
+                </ul>
+
+            </div>
+        </div>
+
+        <script>
+
+            var url = "api/members";
+
+            getAll.onclick = function () {
+
+                fetch(url)
+                        .then(res => res.json()) //in flow1, just do it
+                        .then(data => loadAll(data));
+                console.log("data", data);
+            };
+
+            function loadAll(data) {
+                var table = document.getElementById("members");
+                table.innerHTML = "";
+                var tr = "";
+                data.forEach(x => {
+                    tr += '<tr>';
+                    tr += '<td>' + x.name + '</td>' + '<td>' + x.studentID + '</td>';
+                    tr += '</tr>';
+                });
+                table.innerHTML += tr;
+                console.log(tr);
+            }
+
+        </script>
+
     </body>
 </html>
