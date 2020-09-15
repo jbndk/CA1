@@ -1,7 +1,6 @@
 ## SETUP file for Travis
 ## Make sure to rename the database name in the CREATE DATABASE script below to the SAME name as used for your local tests
 ---
-
 dist: bionic
 
 language: java
@@ -49,3 +48,12 @@ before_script:
 # - sudo systemctl start mysql
 - mysql --version
 - echo "before_script Complete"
+
+notifications:  
+  email:  
+    recipients:  
+    - j.b-n@live.dk
+    - cph-al221@cphbusiness.dk
+    - cph-cl303@cphbusiness.dk
+    on_success: always  
+    on_failure: always
