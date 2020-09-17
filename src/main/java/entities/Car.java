@@ -31,11 +31,12 @@ public class Car implements Serializable {
     }
 
     public Car(int year, String make, String model, int price) {
-        
+
         this.year = year;
         this.make = make;
         this.model = model;
         this.price = price;
+
     }
 
     public int getYear() {
@@ -70,13 +71,8 @@ public class Car implements Serializable {
         this.price = price;
     }
 
-    
-    
     public int getId() {
         return id;
     }
 
-  
-
-   
 }

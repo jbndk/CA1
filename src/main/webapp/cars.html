@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Cars</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="col-sm-6">
+
+                <br>
+
+                <h1>Cars</h1>
+
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Year</th>
+                            <th>Make</th>
+                            <th>Model</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cars">
+                    </tbody>
+                </table>
+                <input type="text" id="carID">
+                <button class="btn btn-primary" id="getCarById">Get car by id</button>
+                <button class="btn btn-primary" id="getAllCars">Get all cars</button>
+
+            </div>
+        </div>
+
+
+        <script>
+            var url = "api/cars/";
+            var getAllUrl = url + "all";
+
+            window.onload = () => {
+                getAll();
+            };
+
+            document.getElementById("getAllCars").addEventListener("click", getAll);
+
+
+            function getAll() {
+
+                fetch(getAllUrl)
+                        .then(res => res.json()) //in flow1, just do it
+                        .then(data => {
+                            loadAll(data);
+                            console.log("data", data);
+                        });
+            }
+            ;
+
+
+
+            function loadAll(data) {
+                var table = document.getElementById("cars");
+                table.innerHTML = "";
+                var tr = "";
+                data.forEach(x => {
+                    tr += '<tr>';
+                    tr += '<td>' + x.id + '</td>' + '<td>' + x.year + '</td>' + '<td>' + x.make + '</td>' + 
+                            '<td>' + x.model + '</td>' + '<td>' + x.price + '</td>';
+                    tr += '</tr>';
+                });
+                table.innerHTML += tr;
+                console.log(tr);
+            }
+
+
+            function loadSingle(data) {
+                var table = document.getElementById("cars");
+                table.innerHTML = "";
+                var tr = "";
+                tr = '<tr>'+'<td>' + data.id + '</td>' + '<td>' + data.year + '</td>' + '<td>' + data.make + '</td>'+ '<td>'  + data.model + '</td>' + '<td>' + data.price + '</td>'+ '</tr>';
+                table.innerHTML = tr;
+                console.log(tr);
+                //Clear input field
+                document.getElementById("carID").value = "";
+            }
+            ;
+
+
+
+            getCarById.onclick = function () {
+
+                var id = document.getElementById("carID").value;
+
+                getIdUrl = url + id;
+
+                fetch(getIdUrl)
+                        .then(res => res.json()) //in flow1, just do it
+                        .then(data => {
+                            loadSingle(data);
+                            console.log("data", data);
+                        });
+            }
+
+        </script>
+    </body>
+</html>
