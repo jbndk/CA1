@@ -46,7 +46,7 @@ public class JokeFacadeTest {
         j2 = new Joke("Yo momma is so fat, when she sat on an iPod, she made the iPad!", "Technology");
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("Member.deleteAllRows").executeUpdate();
+            em.createNamedQuery("Joke.deleteAllRows").executeUpdate();
             em.persist(j1);
             em.persist(j2);
             em.getTransaction().commit();
