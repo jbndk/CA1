@@ -29,7 +29,7 @@ public class JokeResource {
     
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
     
-    private static final JokeFacade FACADE =  JokeFacade.getFacadeExample(EMF);
+    private static final JokeFacade FACADE =  JokeFacade.getJokeFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
             
     @Path("/all")
