@@ -12,7 +12,7 @@ public class JokeDTO {
     private String theJoke;
     private String type;
         
-    public JokeDTO(int id, String name, String studentID) {
+    public JokeDTO(int id, String theJoke, String type) {
         this.id = id;
         this.theJoke = theJoke;
         this.type = type;
