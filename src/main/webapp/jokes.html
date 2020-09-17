@@ -16,12 +16,12 @@ and open the template in the editor.
     <body>
         <div class="container">
             <div class="col-sm-6">
-​
+                ​
                 <br>
-​
+                ​
                 <h1>Jokes</h1>
-​
-​
+                ​
+                ​
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -37,6 +37,10 @@ and open the template in the editor.
                 <button class="btn btn-primary" id="getJokeById">Get joke by id</button>
                 <button class="btn btn-primary" id="getAllJokes">Get all jokes</button>
                 <button class="btn btn-primary" id="getRandomJoke">Random joke</button><br><br>
+
+                <br>
+                <a href="index.html">Back to front page</a>
+                <br><br>
             </div>
         </div>
         <script>
@@ -96,7 +100,7 @@ and open the template in the editor.
                 document.getElementById("jokeID").value = "";
             }
             ;
-            
+
             function random_item(items) {
                 return items[Math.floor(Math.random() * items.length)];
             }
@@ -116,6 +120,6 @@ and open the template in the editor.
             };
 
         </script>
-​
+        ​
     </body>  
 </html>

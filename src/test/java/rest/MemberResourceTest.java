@@ -79,7 +79,7 @@ public class MemberResourceTest {
     @Test
     public void testServerIsUp() {
         System.out.println("Testing is server UP");
-        given().when().get("/members").then().statusCode(200);
+        given().when().get("/groupmembers/all").then().statusCode(200);
     }
 
 @Test
@@ -88,13 +88,13 @@ public class MemberResourceTest {
         //Gherkin Syntax
         given().
                 when().
-                get("/members").
+                get("/groupmembers/all").
                 then().
                 statusCode(200);
         //Hamcrest matcher
         given().
                 when().
-                get("/members").
+                get("/groupmembers/all").
                 then().assertThat().
                 statusCode(200);
     }
@@ -102,7 +102,7 @@ public class MemberResourceTest {
     public void testGetAll() {
         given()
                 .when().
-                get("/members")
+                get("/groupmembers/all")
                 .then().
                 assertThat()
                 .body("size()", equalTo(2))
@@ -115,9 +115,9 @@ public class MemberResourceTest {
     @Test
     public void contentType() {
         //Gherkin Syntax
-        given().when().get("/members").then().contentType(ContentType.JSON);
+        given().when().get("/groupmembers/all").then().contentType(ContentType.JSON);
         //Hamcrest matcher
-        given().when().get("/members").then().assertThat().contentType(ContentType.JSON);
+        given().when().get("/groupmembers/all").then().assertThat().contentType(ContentType.JSON);
     }
 
 
