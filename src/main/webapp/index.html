@@ -50,7 +50,6 @@
                 fetch(url)
                         .then(res => res.json()) //in flow1, just do it
                         .then(data => loadAll(data));
-                console.log("data", data);
             };
 
             function loadAll(data) {

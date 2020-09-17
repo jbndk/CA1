@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Jokes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="col-sm-6">
+​
+                <br>
+​
+                <h1>Jokes</h1>
+​
+​
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>The Joke</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody id="jokes">
+                    </tbody>
+                </table>
+                <input type="text" id="jokeID">
+                <button class="btn btn-primary" id="getJokeById">Get joke by id</button>
+                <button class="btn btn-primary" id="getAllJokes">Get all jokes</button>
+                <button class="btn btn-primary" id="getRandomJoke">Random joke</button><br><br>
+            </div>
+        </div>
+        <script>
+            var url = "api/jokes/";
+            var getAllUrl = url + "all";
+
+            window.onload = () => {
+                getAll();
+            };
+
+            document.getElementById("getAllJokes").addEventListener("click", getAll);
+            document.getElementById("getRandomJoke").addEventListener("click", getRandom);
+
+            function getAll() {
+
+                fetch(getAllUrl)
+                        .then(res => res.json()) //in flow1, just do it
+                        .then(data => {
+                            loadAll(data);
+                            console.log("data", data);
+                        });
+            }
+            ;
+
+            function getRandom() {
+
+                fetch(getAllUrl)
+                        .then(res => res.json()) //in flow1, just do it
+                        .then(data => {
+                            loadSingle(random_item(data));
+                            console.log("data", data);
+                        });
+            }
+
+            function loadAll(data) {
+                var table = document.getElementById("jokes");
+                table.innerHTML = "";
+                var tr = "";
+                data.forEach(x => {
+                    tr += '<tr>';
+                    tr += '<td>' + x.id + '</td>' + '<td>' + x.theJoke + '<td>' + x.type + '</td>';
+                    tr += '</tr>';
+                });
+                table.innerHTML += tr;
+                console.log(tr);
+            }
+
+
+            function loadSingle(data) {
+                var table = document.getElementById("jokes");
+                table.innerHTML = "";
+                var tr = "";
+                tr = '<tr>' + '<td>' + data.id + '</td>' + '<td>' + data.theJoke + '</td>' + '<td>' + data.type + '</td>' + '</tr>';
+                table.innerHTML = tr;
+                console.log(tr);
+                //Clear input field
+                document.getElementById("jokeID").value = "";
+            }
+            ;
+            
+            function random_item(items) {
+                return items[Math.floor(Math.random() * items.length)];
+            }
+
+            getJokeById.onclick = function () {
+
+                var id = document.getElementById("jokeID").value;
+
+                getIdUrl = url + id;
+
+                fetch(getIdUrl)
+                        .then(res => res.json()) //in flow1, just do it
+                        .then(data => {
+                            loadSingle(data);
+                            console.log("data", data);
+                        });
+            };
+
+        </script>
+​
+    </body>  
+</html>
